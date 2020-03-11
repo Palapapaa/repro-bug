@@ -6,22 +6,23 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+# The bug repro
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+I've got 2 components : 
+`my-card` and `my-button`
 
-## Running end-to-end tests
+The `my-card` component uses the `my-button` component.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+When used in an Angular App there is no problem it works as it should be : 
+![As Angular app](https://nsa40.casimages.com/img/2020/03/11/200311021650661140.png)
 
-## Further help
+But when used as an Angular Element the `my-button` component display 2 button instead of 1
+![As Angular Element](https://nsa40.casimages.com/img/2020/03/11/200311021650593631.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Info about this repro :
+- There is a repro as Angular Element in the `test` folder
+- You can re-generate the `elements.js` file by replace the `app.module.ts` by `module_angular_elements` then remove `app.components.ts` and run `npm run build:elements`. The generated file will be put in the `test` folder.

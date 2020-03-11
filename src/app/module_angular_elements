@@ -1,0 +1,26 @@
+import { ButtonComponent } from './button/button.component';
+import { CardComponent } from './card/card.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, Injector } from '@angular/core';
+
+import { createCustomElement } from "@angular/elements";
+
+@NgModule({
+  declarations: [ButtonComponent, CardComponent],
+  imports: [BrowserModule],
+  providers: [],
+  entryComponents: [ButtonComponent, CardComponent]
+})
+export class AppModule {
+  constructor(injector: Injector) {
+    customElements.define(
+      "my-card",
+      createCustomElement(CardComponent, { injector: injector })
+    );
+
+    customElements.define(
+      "my-button",
+      createCustomElement(ButtonComponent, { injector: injector })
+    );
+  }
+}
